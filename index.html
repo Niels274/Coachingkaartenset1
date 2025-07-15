@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kaartenset Herkenning</title>
+  <title>Kaartensets overzicht</title>
   <style>
     body {
       font-family: system-ui, sans-serif;
@@ -14,76 +14,33 @@
       color: #222;
       text-align: center;
     }
-    button {
+    .btn {
+      display: block;
       background-color: #008296;
       color: white;
-      border: none;
       padding: 1rem 2rem;
-      font-size: 1.3rem;
+      margin: 1rem auto;
       border-radius: 8px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-decoration: none;
+      width: 250px;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,130,150,0.4);
       transition: background-color 0.3s ease;
     }
-    button:hover {
+    .btn:hover {
       background-color: #006d75;
     }
-    #kaart {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 3px 7px rgba(0,0,0,0.1);
-      min-height: 140px;
-      white-space: pre-wrap;
-      font-size: 1.1rem;
-      color: #333;
-      text-align: left;
+    h1 {
+      margin-bottom: 2rem;
+      color: #005963;
     }
   </style>
 </head>
 <body>
-  <button id="trekKaartBtn">Trek een kaart</button>
-  <div id="kaart">Klik eerst op Trek een kaart</div>
-
-  <script>
-    const kaarten = [
-      `1. Je hoort jezelf “geeft niks” of “maakt niet uit” zeggen, maar vanbinnen doet het wél iets
-Iemand praat over jouw verhaal heen, of maakt een grapje over wat je net zei. Jij voelt dat het je ergens raakt, maar je wuift het weg met een glimlach of een luchtige zin. Je lijf liet je echter iets anders weten; dat trok net samen. Even zat je er gespannen bij.
-Reflectievraag: Wat voelde ik vóórdat ik (tegen mezelf) zei dat het niet uitmaakt? Wat werd er precies geraakt? Als ik me volledig vrij voelde in dit contact, wat zou ik dan willen zeggen of laten merken?`,
-
-      `2. Je aandacht is bij de ander, waarbij je niet goed meer jezelf voelt
-Je bent helemaal gericht op de ander: op wat ze voelen, zeggen, nodig hebben. Je bent die goede luisteraar, dat is ook een mooie eigenschap van je. Maar je slaat erin door. Je kunt niet meer goed intunen op hoe het met jezelf is, waar jij staat, wat jij voelt of vindt. Misschien merk je het pas achteraf, komen de gevoelens en gedachten dan pas weer in je zicht. Of voel je een andere reactie op wat de ander deelde.
-Reflectievraag: Waar ben ik nú? Wat voel ík, precies op dit moment? En hoe lang probeer ik hier (alleen) al wat aan te veranderen?`,
-
-      `3. Je past je toon en woorden aan, uit overdreven voorzichtigheid en angst
-Je twijfelt over de juiste woorden. In je hoofd komt het vervolg van jullie dialoog in allerlei varianten voorbij. Je bent je woorden aan het wegen om te zorgen dat er straks geen conflict ontstaat. En dat doe je uit een onbewuste angst dat je niet welkom zult zijn als je precies laat weten hoe jij je voelt, wat jij vindt, wat jij wil. Maar daarin laat je niet meer de scherpte en helderheid zien die je ook hebt. Die verdoezel je in zachte pasteltinten.
-Reflectievraag: Wat zou ik zeggen als ik even helemaal niet bezig hoefde te zijn met hoe het overkomt?`,
-
-      `4. Je merkt dat je gespannen raakt, maar je weet niet waarom
-Je zit in een gesprek en voelt ineens een lichte spanning in je buik, schouders of ademhaling. Er is iets gebeurd, maar je hoofd kan het nog niet verklaren. Ondertussen ben je gewoon doorgegaan met praten, luisteren of lachen.
-Na het gesprek, misschien zelf pas na een paar uur, merk je een verandering in je stemming; zwaarte, somberheid, irritatie.
-Die kleine lichamelijke verandering was misschien wel het eerste teken dat er iets geraakt werd, nog voordat je het zelf kunt benoemen.
-Reflectievraag: Wat gebeurde er vlak voor dit gevoel? Kun je terugvinden wat er toen misschien overgeslagen werd?`,
-
-      `5. Je voelt jezelf kleiner worden in aanwezigheid van iemand die veel ruimte inneemt
-De ander is nadrukkelijk aanwezig: in taal, houding of energie. Je merkt dat je je woorden inslikt, stiller wordt, jezelf kleiner maakt.
-Misschien voelt het niet eens als heel vervelend, tot het herhaaldelijk gebeurt.
-Reflectievraag: Wat gebeurt er met mij als een ander veel ruimte inneemt? Is er een deel van mezelf dat ik parkeer als dat gebeurt? Wat zou ik doen als ik mezelf meer ruimte gunde?`,
-
-      `6. Je hoort jezelf pleasen zonder dat je het écht zo bedoelt
-Je zegt iets om de sfeer goed te houden, een compliment, een bevestiging, een instemming. Maar ergens klopt het niet helemaal. Je zei het voor de ander, niet omdat het volledig klopte voor jou.
-En opnieuw: waarschijnlijk merk je het pas achteraf. Komt de dialoog opnieuw voorbij in je hoofd, ben je betere reacties aan het bedenken. Of raak je alsnog verontwaardigd bijvoorbeeld.
-Reflectievraag: Wat hoopte ik te voorkomen door dit zo te zeggen? En wat zou ik hebben gezegd als ik mezelf serieus nam in dit moment?`,
-
-      `7. Je twijfelt ineens aan je gevoel of oordeel zodra de ander het anders ziet.
-Je was ergens zeker van. Een gevoel, een idee, een visie. Maar zodra de ander er iets van vindt, ga jij twijfelen. Je verliest de stevigheid die je even voelde. Je wordt stil, je stopt met opkomen voor jouw visie, hij verdwijnt als vanzelf.
-Reflectievraag: Wat wist ik zeker voordat ik ging twijfelen? Wat maakt het moeilijk om daar bij te blijven als de ander iets anders vindt? En bedenk ook eens of je wellicht onbewust een conflict vermijdt door jouw mening te laten vallen.`,
-
-      `8. Je merkt dat je heel erg je best aan het doen bent.
-Je wilt dat het gesprek goed loopt. Je denkt mee, lacht vriendelijk, luistert aandachtig, je stelt vragen. Maar vanbinnen voelt het alsof je aan het werk bent. Alsof jij verantwoordelijk bent voor hoe soepel het loopt tussen jullie. Je bent harder aan het werk dan waar je energie voor hebt.
-Reflectievraag: Wat zou ik doen of laten als ik even helemaal niet verantwoordelijk hoefde te zijn voor hoe het hier gaat?`,
-
-      `9. Je houdt iets kleins in, en voelt je daar wat eenzaam in
-Er is iets wat je niet zegt. Iets kleins, een gedachte, een opmerking, een gevoel. Het lijkt niet belangrijk genoeg om te delen. Maar ergens voel je dat er een afstand ontstaat, juist doordat je het bij jezelf houdt. Blijkbaar is het aan de oppervlakte klein, maar verbonden met iets groters, iets belangrijkers.
-Reflectievraag: Wat hield ik in? En wat zou er kunnen gebeuren als ik dit wél zou delen, ook al is het klein? En wat gebeurt er als ik dat niet alleen hoef
+  <h1>Kaartensets overzicht</h1>
+  <a href="herkenning.html" class="btn">Herkenning</a>
+  <a href="vertraging.html" class="btn">Vertraging</a>
+  <a href="herstel.html" class="btn">Herstel</a>
+</body>
+</html>
