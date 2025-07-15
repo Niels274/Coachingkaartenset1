@@ -2,133 +2,120 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Herstelkaarten</title>
+  <link rel="stylesheet" href="stijl.css" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 2rem;
-      max-width: 600px;
-      margin: auto;
-      background-color: #fdfdfd;
-    }
-
-    .nav-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .nav-button {
-      padding: 0.5rem 1rem;
-      background-color: #4CAF50;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-
-    .nav-button:hover {
-      background-color: #45a049;
-    }
-
     button {
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      cursor: pointer;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
+      background-color: #008296 !important;
+      padding: 1rem 2rem !important;
+      font-size: 1.3rem !important;
+      border-radius: 8px !important;
+      box-shadow: 0 4px 8px rgba(0,130,150,0.4) !important;
+      cursor: pointer !important;
+      margin: 0 auto 2rem auto !important;
+      display: block !important;
+      color: white !important;
+      border: none !important;
+      transition: background-color 0.3s ease !important;
     }
-
-    .kaart {
-      white-space: pre-wrap;
-      line-height: 1.6;
-    }
-
-    .quote {
-      margin-top: 1rem;
-      font-style: italic;
-      text-align: center;
-    }
-
-    .quote-author {
-      text-align: right;
-      margin-top: 0.3rem;
-      font-style: normal;
+    button:hover {
+      background-color: #006d75 !important;
     }
   </style>
 </head>
 <body>
 
-  <div class="nav-buttons">
-    <a href="herkenning.html" class="nav-button">Herkenning</a>
-    <a href="vertraging.html" class="nav-button">Vertraging</a>
-    <a href="herstel.html" class="nav-button">Herstel</a>
-  </div>
+  <button id="trekKaartBtn">Trek een kaart</button>
 
-  <h2>Herstelkaarten</h2>
-  <button onclick="toonKaart()">Trek een kaart</button>
-  <div id="kaart" class="kaart"></div>
+  <div id="kaart">Klik eerst op Trek een kaart</div>
 
   <script>
     const kaarten = [
-`Stel jezelf de vraag: wat zou ik doen als ik mezelf belangrijk genoeg vond?
-
-Reflectievraag: Wat heb ik nodig om daar ruimte aan te geven?
-
-“Self-compassion is simply giving the same kindness to ourselves that we would give to others.”  
-– Christopher Germer`,
-
-`Spreek deze zin in stilte tegen jezelf uit: ‘Ik mag mijn eigen tempo volgen.’
-
-Reflectievraag: Welk effect heeft het als je deze zin laat binnenkomen?
-
-“You are allowed to be both a masterpiece and a work in progress.”  
-– Sophia Bush`,
-
-`Leg een hand op je hart en adem een paar keer wat dieper. Laat je hand daar gewoon even rusten.
-
-Reflectievraag: Wat gebeurt er in je als je op deze manier aanwezig bent bij jezelf?
-
-“When we give ourselves compassion, we are opening our hearts in a way that can transform our lives.”  
-– Kristin Neff`,
-
-`Zeg tegen jezelf: ‘Ik hoef het niet perfect te doen om goed genoeg te zijn.’
-
-Reflectievraag: Waar ben ik streng voor mezelf geweest? Wat zou ik tegen een vriend(in) zeggen in die situatie?
-
-“There is no greater agony than bearing an untold story inside you.”  
-– Maya Angelou`,
-
-`Sta jezelf toe iets liefs of bemoedigends tegen jezelf te zeggen, hoe klein ook.
-
-Reflectievraag: Hoe voelt het om dit hardop of van binnen te zeggen? Wat roept het op?
-
-“De liefde die je jezelf onthoudt, blijft ook onzichtbaar voor anderen.”  
-– Etty Hillesum`
+      {
+        vraag: "1. Benoem zachtjes wat je opmerkt.",
+        reflectie: "Wat gebeurde er net? Wat merk ik nu op, zonder het te willen fixen?",
+        citaat: "What is denied cannot be healed.",
+        auteur: "Brennan Manning",
+        tekst: "Je merkt dat je net iets deed wat eigenlijk niet helemaal klopte voor jou. Je hoeft het niet meteen te herstellen, maar je kunt het wel opmerken. Door het zachtjes te benoemen tegen jezelf of hardop, geef je erkenning aan jouw binnenwereld."
+      },
+      {
+        vraag: "2. Leg een hand op je hart of buik.",
+        reflectie: "Wat merk ik als ik op deze manier contact maak met mezelf?",
+        citaat: "En misschien is het meest belangrijke op een hele dag wel de rust die we nemen tussen twee diepe ademhalingen.",
+        auteur: "Etty Hillesum",
+        tekst: "Je hoeft niets op te lossen, alleen even te voelen dat je er bent. Een hand op je lijf kan rust geven, verzachting brengen, je weer terugbrengen bij jezelf."
+      },
+      {
+        vraag: "3. Geef jezelf toestemming om opnieuw te beginnen.",
+        reflectie: "Wat heb ik nodig om nu een nieuwe keuze te maken? Wat wil ik mezelf toestaan?",
+        citaat: "And now that you don’t have to be perfect, you can be good.",
+        auteur: "John Steinbeck",
+        tekst: "Je hoeft niet vast te blijven zitten in het oude moment. Je mag kiezen voor een nieuwe beweging, een ander woord, een ander gebaar. Het mag klein zijn, en het mag nu beginnen."
+      },
+      {
+        vraag: "4. Erken dat het pijnlijk is.",
+        reflectie: "Wat raakt mij in wat er net gebeurde? Wat zou ik zeggen als ik niets hoefde te verhullen? En wat weerhoudt me om hier iemand mee te laten kijken?",
+        citaat: "Pain is not a mistake. It’s a place of deep learning.",
+        auteur: "Glennon Doyle",
+        tekst: "Soms voelt het als falen als je jezelf weer kwijtraakte. Maar wat er eigenlijk nodig is, is erkenning: dit doet iets met mij. Als je dat kunt toelaten, verzacht er iets."
+      },
+      {
+        vraag: "5. Spreek tegen jezelf zoals je tegen een goede vriend zou doen.",
+        reflectie: "Wat zou ik nu zeggen tegen een vriend in mijn situatie? Kan ik die woorden ook aan mezelf geven? En wie zou me kunnen helpen om dat ook écht te gaan voelen, niet alleen te bedenken?",
+        citaat: "Self-compassion means being gentle, kind and understanding with yourself.",
+        auteur: "Kristin Neff",
+        tekst: "Je zou een vriend niet kleineren omdat hij even uit verbinding was. Je zou hem bemoedigen, warm toespreken, misschien aanraken. Diezelfde vriendelijkheid kun je ook oefenen richting jezelf."
+      },
+      {
+        vraag: "6. Stel jezelf opnieuw open voor contact.",
+        reflectie: "Wat zou een kleine stap kunnen zijn om mezelf weer in contact te brengen — met mezelf of met de ander?",
+        citaat: "The quality of our relationships determines the quality of our lives.",
+        auteur: "Esther Perel",
+        tekst: "Je bent even uit verbinding geraakt — met jezelf, misschien ook met de ander. Als je voelt dat je weer iets wilt openen, begin dan klein. Een gebaar, een blik, een zin die iets laat zien."
+      },
+      {
+        vraag: "7. Laat de criticus even met rust.",
+        reflectie: "Welke toon spreekt er nu in mij? En mag het ook zachter?",
+        citaat: "Self-compassion is simply giving the same kindness to ourselves that we would give to others.",
+        auteur: "Christopher Germer",
+        tekst: "Na een lastig moment kan je innerlijke stem streng worden: je had dit beter moeten doen. Maar herstel vraagt geen hardheid, alleen ruimte. Even niet verbeteren, alleen aanwezig zijn."
+      },
+      {
+        vraag: "8. Breng jezelf in beweging.",
+        reflectie: "Wat gebeurt er in mij als ik mijn lijf iets laat doen, al is het maar klein?",
+        citaat: "Movement is a medicine for creating change in a person’s physical, emotional, and mental states.",
+        auteur: "Carol Welch",
+        tekst: "Soms helpt het niet om stil te blijven zitten in wat je net voelde. Een kleine beweging — je schouders rollen, je handen losschudden, een paar stappen zetten — helpt je systeem opnieuw te reguleren."
+      },
+      {
+        vraag: "9. Herinner jezelf aan wat belangrijk is.",
+        reflectie: "Wat is voor mij belangrijker dan goed overkomen? Wat wil ik in dit contact blijven voeden of bewaken?",
+        citaat: "When we are no longer able to change a situation, we are challenged to change ourselves.",
+        auteur: "Viktor E. Frankl",
+        tekst: "Als je jezelf even bent kwijtgeraakt, helpt het om terug te keren naar je waarden. Wat wil je zijn in contact, ook als het schuurt? Niet perfect, wel aanwezig."
+      },
+      {
+        vraag: "10. Oefen vergeving, ook in het klein.",
+        reflectie: "Kan ik mezelf dit moment vergeven? En wat verandert er als ik dat probeer?",
+        citaat: "Forgive yourself for not knowing what you didn’t know before you learned it.",
+        auteur: "Maya Angelou",
+        tekst: "Het is niet erg dat je even uit contact was. Het hoort erbij. Wat telt is of je jezelf de hand durft te reiken en weer verder durft te gaan."
+      }
     ];
 
-    function toonKaart() {
+    document.getElementById('trekKaartBtn').addEventListener('click', () => {
       const index = Math.floor(Math.random() * kaarten.length);
       const kaart = kaarten[index];
-      const delen = kaart.split("\n\n");
-      let html = "";
-
-      delen.forEach((blok, i) => {
-        if (i === delen.length - 1 && blok.includes("–")) {
-          const [quote, auteur] = blok.split("–");
-          html += `<div class="quote">“${quote.trim()}”</div><div class="quote-author">– ${auteur.trim()}</div>`;
-        } else {
-          html += `<p>${blok}</p>`;
-        }
-      });
-
-      document.getElementById("kaart").innerHTML = html;
-    }
+      document.getElementById('kaart').innerHTML = `
+        <h3>${kaart.vraag}</h3>
+        <p>${kaart.tekst}</p>
+        <p class="reflectie"><em>${kaart.reflectie}</em></p>
+        <p class="quote">“${kaart.citaat}”</p>
+        <p class="author">– ${kaart.auteur}</p>
+      `;
+    });
   </script>
+
 </body>
 </html>

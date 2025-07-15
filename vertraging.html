@@ -2,133 +2,157 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vertragingskaarten</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kaartenset Vertraging</title>
+  <link rel="stylesheet" href="stijl.css" />
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 2rem;
-      max-width: 600px;
-      margin: auto;
+      font-family: system-ui, sans-serif;
+      max-width: 650px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
       background-color: #fdfdfd;
-    }
-
-    .nav-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .nav-button {
-      padding: 0.5rem 1rem;
-      background-color: #4CAF50;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-
-    .nav-button:hover {
-      background-color: #45a049;
-    }
-
-    button {
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      cursor: pointer;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-
-    .kaart {
-      white-space: pre-wrap;
-      line-height: 1.6;
-    }
-
-    .quote {
-      margin-top: 1rem;
-      font-style: italic;
+      color: #222;
       text-align: center;
     }
-
-    .quote-author {
+    button {
+      background-color: #008296;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.3rem;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,130,150,0.4);
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 0 auto 2rem auto;
+    }
+    button:hover {
+      background-color: #006d75;
+    }
+    #kaart {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.1);
+      padding: 1.5rem 2rem;
+      min-height: 220px;
+      text-align: left;
+      color: #333;
+      white-space: pre-wrap;
+    }
+    h3 {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #005963;
+    }
+    .reflectie {
+      font-style: italic;
+      margin-bottom: 1.2rem;
+      color: #444;
+    }
+    .quote {
+      font-style: italic;
+      text-align: center;
+      margin-top: 1rem;
+      color: #555;
+    }
+    .author {
       text-align: right;
-      margin-top: 0.3rem;
       font-style: normal;
+      color: #777;
+      margin-top: 0.2rem;
     }
   </style>
 </head>
 <body>
 
-  <div class="nav-buttons">
-    <a href="herkenning.html" class="nav-button">Herkenning</a>
-    <a href="vertraging.html" class="nav-button">Vertraging</a>
-    <a href="herstel.html" class="nav-button">Herstel</a>
-  </div>
+<button id="trekKaartBtn">Trek een kaart</button>
 
-  <h2>Vertragingskaarten</h2>
-  <button onclick="toonKaart()">Trek een kaart</button>
-  <div id="kaart" class="kaart"></div>
+<div id="kaart">Klik eerst op Trek een kaart</div>
 
-  <script>
-    const kaarten = [
-`Adem langzaam in door je neus, uit door je mond. Kun je 5 dingen om je heen opmerken die je ziet?
-
-Reflectievraag: Wat verandert er nu je je aandacht naar buiten brengt?
-
-“Ik geef aandacht aan wat ik anders zou negeren.”  
-– Thich Nhat Hanh`,
-
-`Voel je voeten op de grond. Je zit hier. Je bent veilig.
-
-Reflectievraag: Wat doet het met je als je jezelf dit even laat voelen?
-
-“De snelste weg naar veiligheid is vertraging.”  
-– Irene Lyon`,
-
-`Laat je schouders iets zakken. Ontspan je kaken. Voel je je billen op de stoel?
-
-Reflectievraag: Wat gebeurt er in je lijf als je spanning loslaat?
-
-“Er is geen haast bij heling.”  
-– Gabor Maté`,
-
-`Stel jezelf de vraag: waar in mijn lijf is het nu relatief rustig?
-
-Reflectievraag: Kun je je aandacht even daar naartoe brengen?
-
-“Je hoeft niet alles op te lossen. Je mag ook gewoon aanwezig zijn.”  
-– Tara Brach`,
-
-`Kijk langzaam om je heen. Laat je blik rusten op iets wat je mooi vindt. Iets kleins is genoeg.
-
-Reflectievraag: Wat doet dit beeld met je binnenwereld?
-
-“Het gewone is vaak buitengewoon als we het echt zien.”  
-– Pema Chödrön`
-    ];
-
-    function toonKaart() {
-      const index = Math.floor(Math.random() * kaarten.length);
-      const kaart = kaarten[index];
-      const delen = kaart.split("\n\n");
-      let html = "";
-
-      delen.forEach((blok, i) => {
-        if (i === delen.length - 1 && blok.includes("–")) {
-          const [quote, auteur] = blok.split("–");
-          html += `<div class="quote">“${quote.trim()}”</div><div class="quote-author">– ${auteur.trim()}</div>`;
-        } else {
-          html += `<p>${blok}</p>`;
-        }
-      });
-
-      document.getElementById("kaart").innerHTML = html;
+<script>
+  const kaarten = [
+    {
+      vraag: "1. Voel je voeten op de grond.",
+      reflectie: "Wat voel ik nu in mijn voeten, mijn enkels, mijn benen? Zijn ze gespannen, zwaar, levendig, koud?",
+      citaat: "Feel your feet on the ground, and you’ll remember where you are.",
+      auteur: "Jon Kabat-Zinn"
+    },
+    {
+      vraag: "2. Merk op hoe je adem stroomt.",
+      reflectie: "Waar in mijn lijf voel ik mijn adem nu? En hoe is het om daar even bij te blijven?",
+      citaat: "Feelings come and go like clouds in a windy sky. Conscious breathing is my anchor.",
+      auteur: "Thich Nhat Hanh"
+    },
+    {
+      vraag: "3. Zoom uit.",
+      reflectie: "Wat gebeurt er als ik dit moment bekijk vanuit een ruimer perspectief? Wat valt me dan op?",
+      citaat: "You are the sky. Everything else – it’s just the weather.",
+      auteur: "Pema Chödrön"
+    },
+    {
+      vraag: "4. Vraag jezelf zachtjes af: hoe is het met mij?",
+      reflectie: "Wat leeft er in mij, precies nu? Zonder oordeel, zonder haast?",
+      citaat: "The curious paradox is that when I accept myself just as I am, then I can change.",
+      auteur: "Carl Rogers"
+    },
+    {
+      vraag: "5. Stel jezelf de vraag: waar ben ik?",
+      reflectie: "Ben ik bij mezelf, ben ik in het nu? Of ben ik ergens anders? Wat brengt me terug?",
+      citaat: "Wherever you are, be there totally.",
+      auteur: "Eckhart Tolle"
+    },
+    {
+      vraag: "6. Stop even met denken.",
+      reflectie: "Wat gebeurt er als ik mijn aandacht van mijn gedachten naar mijn lichaam breng? Wat valt daar op?",
+      citaat: "The mind is a superb instrument if used rightly. Used wrongly, it becomes very destructive.",
+      auteur: "Eckhart Tolle"
+    },
+    {
+      vraag: "7. Zoek een plek van ruimte in jezelf.",
+      reflectie: "Welke plek in mij voelt open, ruim of rustig? Kan ik daar even verblijven?",
+      citaat: "Your sacred space is where you can find yourself again and again.",
+      auteur: "Joseph Campbell"
+    },
+    {
+      vraag: "8. Laat het even stil worden.",
+      reflectie: "Wat komt er omhoog als ik niets zeg en niets invul? Wat probeert er gehoord te worden?",
+      citaat: "Only in silence can we hear the depth of our own voice.",
+      auteur: "Richard Rohr"
+    },
+    {
+      vraag: "9. Herken het moment vóór de automatische reactie.",
+      reflectie: "Wat gebeurt er in dat split second voordat ik iets zeg, glimlach, inschik of oplos? En wat zou ik ontdekken als ik dit patroon niet alleen hoefde te onderzoeken?",
+      citaat: "Between stimulus and response there is a space. In that space is our power to choose our response. In our response lies our growth and our freedom.",
+      auteur: "Viktor E. Frankl"
+    },
+    {
+      vraag: "10. Keer terug naar je intentie.",
+      reflectie: "Wat is mijn diepere intentie hier? Wat als ik mij niet bezig houd met goed willen overkomen of ongemak oplossen?",
+      citaat: "When your intention is clear, so is the way.",
+      auteur: "Alan Cohen"
+    },
+    {
+      vraag: "11. Kijk om je heen, laat je ogen landen.",
+      reflectie: "Wat valt me op in mijn omgeving? Wat gebeurt er in mijn lichaam als ik mezelf hier laat landen?",
+      citaat: "Let your senses lead you home.",
+      auteur: "Irene Lyon"
     }
-  </script>
+  ];
+
+  document.getElementById('trekKaartBtn').addEventListener('click', () => {
+    const index = Math.floor(Math.random() * kaarten.length);
+    const kaart = kaarten[index];
+
+    document.getElementById('kaart').innerHTML = `
+      <h3>${kaart.vraag}</h3>
+      <p class="reflectie"><em>${kaart.reflectie}</em></p>
+      <p class="quote">“${kaart.citaat}”</p>
+      <p class="author">– ${kaart.auteur}</p>
+    `;
+  });
+</script>
+
 </body>
 </html>
