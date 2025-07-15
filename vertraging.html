@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vertragingskaarten</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      background-color: #fdfdfd;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .nav-button {
+      padding: 0.5rem 1rem;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .nav-button:hover {
+      background-color: #45a049;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .kaart {
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    .quote {
+      margin-top: 1rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .quote-author {
+      text-align: right;
+      margin-top: 0.3rem;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-buttons">
+    <a href="herkenning.html" class="nav-button">Herkenning</a>
+    <a href="vertraging.html" class="nav-button">Vertraging</a>
+    <a href="herstel.html" class="nav-button">Herstel</a>
+  </div>
+
+  <h2>Vertragingskaarten</h2>
+  <button onclick="toonKaart()">Trek een kaart</button>
+  <div id="kaart" class="kaart"></div>
+
+  <script>
+    const kaarten = [
+`Adem langzaam in door je neus, uit door je mond. Kun je 5 dingen om je heen opmerken die je ziet?
+
+Reflectievraag: Wat verandert er nu je je aandacht naar buiten brengt?
+
+“Ik geef aandacht aan wat ik anders zou negeren.”  
+– Thich Nhat Hanh`,
+
+`Voel je voeten op de grond. Je zit hier. Je bent veilig.
+
+Reflectievraag: Wat doet het met je als je jezelf dit even laat voelen?
+
+“De snelste weg naar veiligheid is vertraging.”  
+– Irene Lyon`,
+
+`Laat je schouders iets zakken. Ontspan je kaken. Voel je je billen op de stoel?
+
+Reflectievraag: Wat gebeurt er in je lijf als je spanning loslaat?
+
+“Er is geen haast bij heling.”  
+– Gabor Maté`,
+
+`Stel jezelf de vraag: waar in mijn lijf is het nu relatief rustig?
+
+Reflectievraag: Kun je je aandacht even daar naartoe brengen?
+
+“Je hoeft niet alles op te lossen. Je mag ook gewoon aanwezig zijn.”  
+– Tara Brach`,
+
+`Kijk langzaam om je heen. Laat je blik rusten op iets wat je mooi vindt. Iets kleins is genoeg.
+
+Reflectievraag: Wat doet dit beeld met je binnenwereld?
+
+“Het gewone is vaak buitengewoon als we het echt zien.”  
+– Pema Chödrön`
+    ];
+
+    function toonKaart() {
+      const index = Math.floor(Math.random() * kaarten.length);
+      const kaart = kaarten[index];
+      const delen = kaart.split("\n\n");
+      let html = "";
+
+      delen.forEach((blok, i) => {
+        if (i === delen.length - 1 && blok.includes("–")) {
+          const [quote, auteur] = blok.split("–");
+          html += `<div class="quote">“${quote.trim()}”</div><div class="quote-author">– ${auteur.trim()}</div>`;
+        } else {
+          html += `<p>${blok}</p>`;
+        }
+      });
+
+      document.getElementById("kaart").innerHTML = html;
+    }
+  </script>
+</body>
+</html>

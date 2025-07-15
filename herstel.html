@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herstelkaarten</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      background-color: #fdfdfd;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .nav-button {
+      padding: 0.5rem 1rem;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .nav-button:hover {
+      background-color: #45a049;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .kaart {
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    .quote {
+      margin-top: 1rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .quote-author {
+      text-align: right;
+      margin-top: 0.3rem;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-buttons">
+    <a href="herkenning.html" class="nav-button">Herkenning</a>
+    <a href="vertraging.html" class="nav-button">Vertraging</a>
+    <a href="herstel.html" class="nav-button">Herstel</a>
+  </div>
+
+  <h2>Herstelkaarten</h2>
+  <button onclick="toonKaart()">Trek een kaart</button>
+  <div id="kaart" class="kaart"></div>
+
+  <script>
+    const kaarten = [
+`Stel jezelf de vraag: wat zou ik doen als ik mezelf belangrijk genoeg vond?
+
+Reflectievraag: Wat heb ik nodig om daar ruimte aan te geven?
+
+“Self-compassion is simply giving the same kindness to ourselves that we would give to others.”  
+– Christopher Germer`,
+
+`Spreek deze zin in stilte tegen jezelf uit: ‘Ik mag mijn eigen tempo volgen.’
+
+Reflectievraag: Welk effect heeft het als je deze zin laat binnenkomen?
+
+“You are allowed to be both a masterpiece and a work in progress.”  
+– Sophia Bush`,
+
+`Leg een hand op je hart en adem een paar keer wat dieper. Laat je hand daar gewoon even rusten.
+
+Reflectievraag: Wat gebeurt er in je als je op deze manier aanwezig bent bij jezelf?
+
+“When we give ourselves compassion, we are opening our hearts in a way that can transform our lives.”  
+– Kristin Neff`,
+
+`Zeg tegen jezelf: ‘Ik hoef het niet perfect te doen om goed genoeg te zijn.’
+
+Reflectievraag: Waar ben ik streng voor mezelf geweest? Wat zou ik tegen een vriend(in) zeggen in die situatie?
+
+“There is no greater agony than bearing an untold story inside you.”  
+– Maya Angelou`,
+
+`Sta jezelf toe iets liefs of bemoedigends tegen jezelf te zeggen, hoe klein ook.
+
+Reflectievraag: Hoe voelt het om dit hardop of van binnen te zeggen? Wat roept het op?
+
+“De liefde die je jezelf onthoudt, blijft ook onzichtbaar voor anderen.”  
+– Etty Hillesum`
+    ];
+
+    function toonKaart() {
+      const index = Math.floor(Math.random() * kaarten.length);
+      const kaart = kaarten[index];
+      const delen = kaart.split("\n\n");
+      let html = "";
+
+      delen.forEach((blok, i) => {
+        if (i === delen.length - 1 && blok.includes("–")) {
+          const [quote, auteur] = blok.split("–");
+          html += `<div class="quote">“${quote.trim()}”</div><div class="quote-author">– ${auteur.trim()}</div>`;
+        } else {
+          html += `<p>${blok}</p>`;
+        }
+      });
+
+      document.getElementById("kaart").innerHTML = html;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herkenningskaarten</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      background-color: #fdfdfd;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .nav-button {
+      padding: 0.5rem 1rem;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .nav-button:hover {
+      background-color: #45a049;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .kaart {
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    .quote {
+      margin-top: 1rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .quote-author {
+      text-align: right;
+      margin-top: 0.3rem;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-buttons">
+    <a href="herkenning.html" class="nav-button">Herkenning</a>
+    <a href="vertraging.html" class="nav-button">Vertraging</a>
+    <a href="herstel.html" class="nav-button">Herstel</a>
+  </div>
+
+  <h2>Herkenningskaarten</h2>
+  <button onclick="toonKaart()">Trek een kaart</button>
+  <div id="kaart" class="kaart"></div>
+
+  <script>
+    const kaarten = [
+`Je hoort jezelf “geeft niks” of “maakt niet uit” zeggen, maar vanbinnen doet het wél iets
+
+Reflectievraag: Wat voelde ik vóórdat ik (tegen mezelf) zei dat het niet uitmaakt? Wat werd er precies geraakt? Als ik me volledig vrij voelde in dit contact, wat zou ik dan willen zeggen of laten merken?`,
+
+`Je aandacht is bij de ander, waarbij je niet goed meer jezelf voelt
+
+Reflectievraag: Waar ben ik nú? Wat voel ík, precies op dit moment? En hoe lang probeer ik hier (alleen) al wat aan te veranderen?`,
+
+`Je past je toon en woorden aan, uit overdreven voorzichtigheid en angst
+
+Reflectievraag: Wat zou ik zeggen als ik even helemaal niet bezig hoefde te zijn met hoe het overkomt?`,
+
+`Je merkt dat je gespannen raakt, maar je weet niet waarom
+
+Reflectievraag: Wat gebeurde er vlak voor dit gevoel? Kun je terugvinden wat er toen misschien overgeslagen werd?`,
+
+`Je voelt jezelf kleiner worden in aanwezigheid van iemand die veel ruimte inneemt
+
+Reflectievraag: Wat gebeurt er met mij als een ander veel ruimte inneemt? Is er een deel van mezelf dat ik parkeer als dat gebeurt? Wat zou ik doen als ik mezelf meer ruimte gunde?`,
+
+`Je hoort jezelf pleasen zonder dat je het écht zo bedoelt
+
+Reflectievraag: Wat hoopte ik te voorkomen door dit zo te zeggen? En wat zou ik hebben gezegd als ik mezelf serieus nam in dit moment?`,
+
+`Je twijfelt ineens aan je gevoel of oordeel zodra de ander het anders ziet
+
+Reflectievraag: Wat wist ik zeker voordat ik ging twijfelen? Wat maakt het moeilijk om daar bij te blijven als de ander iets anders vindt? En bedenk ook eens of je wellicht onbewust een conflict vermijdt door jouw mening te laten vallen.`,
+
+`Je merkt dat je heel erg je best aan het doen bent
+
+Reflectievraag: Wat zou ik doen of laten als ik even helemaal niet verantwoordelijk hoefde te zijn voor hoe het hier gaat?`,
+
+`Je houdt iets kleins in, en voelt je daar wat eenzaam in
+
+Reflectievraag: Wat hield ik in? En wat zou er kunnen gebeuren als ik dit wél zou delen, ook al is het klein? En wat gebeurt er als ik dat niet alleen hoef te dragen?`,
+
+`Je bent bezig met jezelf te verklaren, in plaats van jezelf te laten zien
+
+Reflectievraag: Zit ik nu in mijn hoofd of in mijn lijf? Heb ik nog contact met mijn gevoel? Ben ik mezelf nu aan het verklaren of werkelijk aan het laten zien? Wat zou er gebeuren als ik mijn hoofd een kleinere rol liet spelen?`
+    ];
+
+    function toonKaart() {
+      const index = Math.floor(Math.random() * kaarten.length);
+      const kaartTekst = kaarten[index];
+      document.getElementById("kaart").innerText = kaartTekst;
+    }
+  </script>
+</body>
+</html>

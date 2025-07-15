@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reflectiekaarten</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px 20px;
+      background: #f7f7f7;
+    }
+    h1 {
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    a.button {
+      background: #006d77;
+      color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-size: 18px;
+      transition: background 0.3s ease;
+    }
+    a.button:hover {
+      background: #004c4f;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 20px;
+      }
+      a.button {
+        font-size: 16px;
+        padding: 12px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Kies een reflectiekaartenset</h1>
+  <div class="button-container">
+    <a class="button" href="herkenning.html" target="_blank">Herkenning</a>
+    <a class="button" href="vertraging.html" target="_blank">Vertraging</a>
+    <a class="button" href="herstel.html" target="_blank">Herstel</a>
+  </div>
+</body>
+</html>
