@@ -7,7 +7,7 @@ body {
   background-color: #fdfdfd;
   color: #222;
   text-align: center;
-  line-height: 1.6; /* Algemeen iets ruimere regelafstand */
+  line-height: 1.6; /* Algemene regelafstand */
 }
 
 /* Knop */
@@ -46,15 +46,16 @@ button:hover {
 /* Vraag */
 h3 {
   font-weight: 700;
-  margin-bottom: 0.8rem; /* Iets meer ruimte na vraag */
+  margin-top: 0;          /* Geen marge boven vraag */
+  margin-bottom: 1rem;    /* Ruimte na vraag */
   color: #005963;
 }
 
 /* Reflectievraag */
 .reflectie {
   font-style: italic;
-  margin-top: 1rem;
-  margin-bottom: 1.8rem; /* Ruimere marge voor duidelijkheid */
+  margin-top: 0;          /* Geen marge boven reflectie (voorkomt dubbele ruimte) */
+  margin-bottom: 1.8rem;  /* Ruimere marge na reflectie */
   color: #555;
   line-height: 1.6;
 }
