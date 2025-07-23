@@ -105,7 +105,12 @@
         laatsteIndices.shift();
       }
 
-      document.getElementById('kaart').innerText = kaarten[index];
+      const kaart = kaarten[index];
+document.getElementById('kaart').innerHTML = `
+  <h3>${kaart.vraag}</h3>
+  <p class="reflectie">${kaart.reflectie}</p>
+  <p class="citaat">“${kaart.citaat}”<br><span style="display:block; margin-top: 0.5rem;">— ${kaart.auteur}</span></p>
+`;
     }
   </script>
 

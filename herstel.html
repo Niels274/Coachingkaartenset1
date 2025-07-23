@@ -106,30 +106,30 @@
 
     const laatsteIndices = [];
 
-    function toonKaart() {
-      // Genereer lijst van toegestane indices
-      const beschikbareIndices = kaarten
-        .map((_, i) => i)
-        .filter(i => !laatsteIndices.includes(i));
+  function toonKaart() {
+    const beschikbareIndices = kaarten
+      .map((_, i) => i)
+      .filter(i => !laatsteIndices.includes(i));
 
-      // Als er geen andere keuze meer is, reset de uitsluiting
-      if (beschikbareIndices.length === 0) {
-        laatsteIndices.length = 0; // reset
-        beschikbareIndices.push(...kaarten.map((_, i) => i));
-      }
-
-      // Kies een index uit de beschikbare indices
-      const index = beschikbareIndices[Math.floor(Math.random() * beschikbareIndices.length)];
-
-      // Bewaar index
-      laatsteIndices.push(index);
-      if (laatsteIndices.length > 3) {
-        laatsteIndices.shift();
-      }
-
-      document.getElementById('kaart').innerText = kaarten[index];
+    if (beschikbareIndices.length === 0) {
+      laatsteIndices.length = 0;
+      beschikbareIndices.push(...kaarten.map((_, i) => i));
     }
-  </script>
 
-</body>
-</html>
+    const index = beschikbareIndices[Math.floor(Math.random() * beschikbareIndices.length)];
+
+    laatsteIndices.push(index);
+    if (laatsteIndices.length > 3) {
+      laatsteIndices.shift();
+    }
+
+    const kaart = kaarten[index];
+    document.getElementById('kaart').innerHTML = `
+      <h3>${kaart.vraag}</h3>
+      <p>${kaart.tekst}</p>
+      <p><strong>Reflectie:</strong> ${kaart.reflectie}</p>
+      <blockquote>${kaart.citaat}</blockquote>
+      <p style="text-align: right; margin-top: -1rem;"><em>${kaart.auteur}</em></p>
+    `;
+  }
+</script>

@@ -115,7 +115,12 @@
         laatsteIndices.shift();
       }
 
-      document.getElementById('kaart').innerText = kaarten[index];
+      const kaart = kaarten[index];
+document.getElementById('kaart').innerHTML = `
+  <h3>${kaart.vraag}</h3>
+  <p>${kaart.tekst}</p>
+  <p class="reflectie">${kaart.reflectie}</p>
+`;
     }
   </script>
 
