@@ -19,8 +19,46 @@
       border: none !important;
       transition: background-color 0.3s ease !important;
     }
+
     button:hover {
       background-color: #006d75 !important;
+    }
+
+    #kaart {
+      white-space: pre-wrap;
+      line-height: 1.6;
+      padding: 1.5rem 2rem;
+      min-height: 240px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.1);
+      color: #333;
+      text-align: left;
+    }
+
+    #kaart p {
+      margin-bottom: 1rem;
+    }
+
+    #kaart p.reflectie {
+      font-style: italic;
+      color: #444;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    #kaart p.citaat {
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+
+    #kaart .auteur {
+      text-align: right;
+      margin-top: -0.5rem;
+      font-style: italic;
+      color: #666;
     }
   </style>
 </head>
@@ -106,30 +144,34 @@
 
     const laatsteIndices = [];
 
-  function toonKaart() {
-    const beschikbareIndices = kaarten
-      .map((_, i) => i)
-      .filter(i => !laatsteIndices.includes(i));
+    function toonKaart() {
+      const beschikbareIndices = kaarten
+        .map((_, i) => i)
+        .filter(i => !laatsteIndices.includes(i));
 
-    if (beschikbareIndices.length === 0) {
-      laatsteIndices.length = 0;
-      beschikbareIndices.push(...kaarten.map((_, i) => i));
+      if (beschikbareIndices.length === 0) {
+        laatsteIndices.length = 0;
+        beschikbareIndices.push(...kaarten.map((_, i) => i));
+      }
+
+      const index = beschikbareIndices[Math.floor(Math.random() * beschikbareIndices.length)];
+      laatsteIndices.push(index);
+      if (laatsteIndices.length > 3) {
+        laatsteIndices.shift();
+      }
+
+      const kaart = kaarten[index];
+      document.getElementById('kaart').innerHTML = `
+        <h3>${kaart.vraag}</h3>
+        <p>${kaart.tekst}</p>
+        <p class="reflectie">${kaart.reflectie}</p>
+        <p class="citaat">“${kaart.citaat}”</p>
+        <p class="auteur">— ${kaart.auteur}</p>
+      `;
     }
 
-    const index = beschikbareIndices[Math.floor(Math.random() * beschikbareIndices.length)];
+    document.getElementById('trekKaartBtn').addEventListener('click', toonKaart);
+  </script>
 
-    laatsteIndices.push(index);
-    if (laatsteIndices.length > 3) {
-      laatsteIndices.shift();
-    }
-
-    const kaart = kaarten[index];
-    document.getElementById('kaart').innerHTML = `
-      <h3>${kaart.vraag}</h3>
-      <p>${kaart.tekst}</p>
-      <p><strong>Reflectie:</strong> ${kaart.reflectie}</p>
-      <blockquote>${kaart.citaat}</blockquote>
-      <p style="text-align: right; margin-top: -1rem;"><em>${kaart.auteur}</em></p>
-    `;
-  }
-</script>
+</body>
+</html>

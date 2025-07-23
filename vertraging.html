@@ -5,113 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kaartenset Vertraging</title>
   <link rel="stylesheet" href="stijl.css" />
+  <style>
+    #kaart {
+      white-space: pre-wrap;
+      line-height: 1.6;
+      padding: 1.5rem 2rem;
+      min-height: 220px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.1);
+      color: #333;
+      text-align: left;
+    }
+    #kaart p {
+      margin-bottom: 1rem;
+    }
+    #kaart p.reflectie {
+      font-style: italic;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+      color: #444;
+    }
+    #kaart p.citaat {
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
 
-<button id="trekKaartBtn">Trek een kaart</button>
+  <button id="trekKaartBtn">Trek een kaart</button>
+  <div id="kaart">Klik eerst op Trek een kaart</div>
 
-<div id="kaart">Klik eerst op Trek een kaart</div>
+  <script>
+    const kaarten = [
+      {
+        vraag: "1. Voel je voeten op de grond.",
+        reflectie: "Wat voel ik nu in mijn voeten, mijn enkels, mijn benen? Zijn ze gespannen, zwaar, levendig, koud?",
+        citaat: "Feel your feet on the ground, and you’ll remember where you are.",
+        auteur: "Jon Kabat-Zinn"
+      },
+      {
+        vraag: "2. Merk op hoe je adem stroomt.",
+        reflectie: "Waar in mijn lijf voel ik mijn adem nu? En hoe is het om daar even bij te blijven?",
+        citaat: "Feelings come and go like clouds in a windy sky. Conscious breathing is my anchor.",
+        auteur: "Thich Nhat Hanh"
+      },
+      {
+        vraag: "3. Zoom uit.",
+        reflectie: "Wat gebeurt er als ik dit moment bekijk vanuit een ruimer perspectief? Wat valt me dan op?",
+        citaat: "You are the sky. Everything else – it’s just the weather.",
+        auteur: "Pema Chödrön"
+      },
+      {
+        vraag: "4. Vraag jezelf zachtjes af: hoe is het met mij?",
+        reflectie: "Wat leeft er in mij, precies nu? Zonder oordeel, zonder haast?",
+        citaat: "The curious paradox is that when I accept myself just as I am, then I can change.",
+        auteur: "Carl Rogers"
+      },
+      {
+        vraag: "5. Stel jezelf de vraag: waar ben ik?",
+        reflectie: "Ben ik bij mezelf, ben ik in het nu? Of ben ik ergens anders? Wat brengt me terug?",
+        citaat: "Wherever you are, be there totally.",
+        auteur: "Eckhart Tolle"
+      },
+      {
+        vraag: "6. Stop even met denken.",
+        reflectie: "Wat gebeurt er als ik mijn aandacht van mijn gedachten naar mijn lichaam breng? Wat valt daar op?",
+        citaat: "The mind is a superb instrument if used rightly. Used wrongly, it becomes very destructive.",
+        auteur: "Eckhart Tolle"
+      },
+      {
+        vraag: "7. Zoek een plek van ruimte in jezelf.",
+        reflectie: "Welke plek in mij voelt open, ruim of rustig? Kan ik daar even verblijven?",
+        citaat: "Your sacred space is where you can find yourself again and again.",
+        auteur: "Joseph Campbell"
+      },
+      {
+        vraag: "8. Laat het even stil worden.",
+        reflectie: "Wat komt er omhoog als ik niets zeg en niets invul? Wat probeert er gehoord te worden?",
+        citaat: "Only in silence can we hear the depth of our own voice.",
+        auteur: "Richard Rohr"
+      },
+      {
+        vraag: "9. Herken het moment vóór de automatische reactie.",
+        reflectie: "Wat gebeurt er in dat split second voordat ik iets zeg, glimlach, inschik of oplos? En wat zou ik ontdekken als ik dit patroon niet alleen hoefde te onderzoeken?",
+        citaat: "Between stimulus and response there is a space. In that space is our power to choose our response. In our response lies our growth and our freedom.",
+        auteur: "Viktor E. Frankl"
+      },
+      {
+        vraag: "10. Keer terug naar je intentie.",
+        reflectie: "Wat is mijn diepere intentie hier? Wat als ik mij niet bezig houd met goed willen overkomen of ongemak oplossen?",
+        citaat: "When your intention is clear, so is the way.",
+        auteur: "Alan Cohen"
+      },
+      {
+        vraag: "11. Kijk om je heen, laat je ogen landen.",
+        reflectie: "Wat valt me op in mijn omgeving? Wat gebeurt er in mijn lichaam als ik mezelf hier laat landen?",
+        citaat: "Let your senses lead you home.",
+        auteur: "Irene Lyon"
+      }
+    ];
 
-<script>
-  const kaarten = [
-    {
-      vraag: "1. Voel je voeten op de grond.",
-      reflectie: "Wat voel ik nu in mijn voeten, mijn enkels, mijn benen? Zijn ze gespannen, zwaar, levendig, koud?",
-      citaat: "Feel your feet on the ground, and you’ll remember where you are.",
-      auteur: "Jon Kabat-Zinn"
-    },
-    {
-      vraag: "2. Merk op hoe je adem stroomt.",
-      reflectie: "Waar in mijn lijf voel ik mijn adem nu? En hoe is het om daar even bij te blijven?",
-      citaat: "Feelings come and go like clouds in a windy sky. Conscious breathing is my anchor.",
-      auteur: "Thich Nhat Hanh"
-    },
-    {
-      vraag: "3. Zoom uit.",
-      reflectie: "Wat gebeurt er als ik dit moment bekijk vanuit een ruimer perspectief? Wat valt me dan op?",
-      citaat: "You are the sky. Everything else – it’s just the weather.",
-      auteur: "Pema Chödrön"
-    },
-    {
-      vraag: "4. Vraag jezelf zachtjes af: hoe is het met mij?",
-      reflectie: "Wat leeft er in mij, precies nu? Zonder oordeel, zonder haast?",
-      citaat: "The curious paradox is that when I accept myself just as I am, then I can change.",
-      auteur: "Carl Rogers"
-    },
-    {
-      vraag: "5. Stel jezelf de vraag: waar ben ik?",
-      reflectie: "Ben ik bij mezelf, ben ik in het nu? Of ben ik ergens anders? Wat brengt me terug?",
-      citaat: "Wherever you are, be there totally.",
-      auteur: "Eckhart Tolle"
-    },
-    {
-      vraag: "6. Stop even met denken.",
-      reflectie: "Wat gebeurt er als ik mijn aandacht van mijn gedachten naar mijn lichaam breng? Wat valt daar op?",
-      citaat: "The mind is a superb instrument if used rightly. Used wrongly, it becomes very destructive.",
-      auteur: "Eckhart Tolle"
-    },
-    {
-      vraag: "7. Zoek een plek van ruimte in jezelf.",
-      reflectie: "Welke plek in mij voelt open, ruim of rustig? Kan ik daar even verblijven?",
-      citaat: "Your sacred space is where you can find yourself again and again.",
-      auteur: "Joseph Campbell"
-    },
-    {
-      vraag: "8. Laat het even stil worden.",
-      reflectie: "Wat komt er omhoog als ik niets zeg en niets invul? Wat probeert er gehoord te worden?",
-      citaat: "Only in silence can we hear the depth of our own voice.",
-      auteur: "Richard Rohr"
-    },
-    {
-      vraag: "9. Herken het moment vóór de automatische reactie.",
-      reflectie: "Wat gebeurt er in dat split second voordat ik iets zeg, glimlach, inschik of oplos? En wat zou ik ontdekken als ik dit patroon niet alleen hoefde te onderzoeken?",
-      citaat: "Between stimulus and response there is a space. In that space is our power to choose our response. In our response lies our growth and our freedom.",
-      auteur: "Viktor E. Frankl"
-    },
-    {
-      vraag: "10. Keer terug naar je intentie.",
-      reflectie: "Wat is mijn diepere intentie hier? Wat als ik mij niet bezig houd met goed willen overkomen of ongemak oplossen?",
-      citaat: "When your intention is clear, so is the way.",
-      auteur: "Alan Cohen"
-    },
-    {
-      vraag: "11. Kijk om je heen, laat je ogen landen.",
-      reflectie: "Wat valt me op in mijn omgeving? Wat gebeurt er in mijn lichaam als ik mezelf hier laat landen?",
-      citaat: "Let your senses lead you home.",
-      auteur: "Irene Lyon"
-    }
-  ];
-
-  const laatsteIndices = [];
+    const laatsteIndices = [];
 
     function toonKaart() {
-      // Genereer lijst van toegestane indices
       const beschikbareIndices = kaarten
         .map((_, i) => i)
         .filter(i => !laatsteIndices.includes(i));
 
-      // Als er geen andere keuze meer is, reset de uitsluiting
       if (beschikbareIndices.length === 0) {
-        laatsteIndices.length = 0; // reset
+        laatsteIndices.length = 0;
         beschikbareIndices.push(...kaarten.map((_, i) => i));
       }
 
-      // Kies een index uit de beschikbare indices
       const index = beschikbareIndices[Math.floor(Math.random() * beschikbareIndices.length)];
-
-      // Bewaar index
       laatsteIndices.push(index);
       if (laatsteIndices.length > 3) {
         laatsteIndices.shift();
       }
 
       const kaart = kaarten[index];
-document.getElementById('kaart').innerHTML = `
-  <h3>${kaart.vraag}</h3>
-  <p class="reflectie">${kaart.reflectie}</p>
-  <p class="citaat">“${kaart.citaat}”<br><span style="display:block; margin-top: 0.5rem;">— ${kaart.auteur}</span></p>
-`;
+      document.getElementById('kaart').innerHTML = `
+        <h3>${kaart.vraag}</h3>
+        <p class="reflectie">${kaart.reflectie}</p>
+        <p class="citaat">“${kaart.citaat}”<br><span style="display:block; margin-top: 0.5rem;">— ${kaart.auteur}</span></p>
+      `;
     }
+
+    // Koppel knop aan functie
+    document.getElementById('trekKaartBtn').addEventListener('click', toonKaart);
   </script>
 
 </body>

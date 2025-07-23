@@ -95,34 +95,32 @@
     const laatsteIndices = [];
 
     function toonKaart() {
-      // Genereer lijst van toegestane indices
       const beschikbareIndices = kaarten
         .map((_, i) => i)
         .filter(i => !laatsteIndices.includes(i));
 
-      // Als er geen andere keuze meer is, reset de uitsluiting
       if (beschikbareIndices.length === 0) {
-        laatsteIndices.length = 0; // reset
+        laatsteIndices.length = 0;
         beschikbareIndices.push(...kaarten.map((_, i) => i));
       }
 
-      // Kies een index uit de beschikbare indices
       const index = beschikbareIndices[Math.floor(Math.random() * beschikbareIndices.length)];
 
-      // Bewaar index
       laatsteIndices.push(index);
       if (laatsteIndices.length > 3) {
         laatsteIndices.shift();
       }
 
       const kaart = kaarten[index];
-document.getElementById('kaart').innerHTML = `
-  <h3>${kaart.vraag}</h3>
-  <p>${kaart.tekst}</p>
-  <p class="reflectie">${kaart.reflectie}</p>
-`;
+      document.getElementById('kaart').innerHTML = `
+        <h3>${kaart.vraag}</h3>
+        <p>${kaart.tekst}</p>
+        <p class="reflectie">${kaart.reflectie}</p>
+      `;
     }
-  </script>
 
+    // ✅ koppeling event-handler
+    document.getElementById('trekKaartBtn').addEventListener('click', toonKaart);
+  </script>
 </body>
 </html>
