@@ -91,17 +91,25 @@
         reflectie: "Zit ik nu in mijn hoofd of in mijn lijf? Heb ik nog contact met mijn gevoel? Ben ik mezelf nu aan het verklaren of werkelijk aan het laten zien? Wat zou er gebeuren als ik mijn hoofd een kleinere rol liet spelen?"
       }
     ];
+// Array om de laatste drie getrokken indexen te onthouden
+  const laatsteIndices = [];
 
-    document.getElementById('trekKaartBtn').addEventListener('click', () => {
-      const index = Math.floor(Math.random() * kaarten.length);
-      const kaart = kaarten[index];
-      document.getElementById('kaart').innerHTML = `
-        <h3>${kaart.vraag}</h3>
-        <p>${kaart.tekst}</p>
-        <p class="reflectie"><em>${kaart.reflectie}</em></p>
-      `;
-    });
-  </script>
+  function toonKaart() {
+    let index;
 
+    do {
+      index = Math.floor(Math.random() * kaarten.length);
+    } while (laatsteIndices.includes(index) && kaarten.length > laatsteIndices.length);
+
+    // Voeg de nieuwe index toe aan de lijst en houd deze maximaal 3 lang
+    laatsteIndices.push(index);
+    if (laatsteIndices.length > 3) {
+      laatsteIndices.shift(); // verwijder oudste index
+    }
+
+    const kaart = kaarten[index];
+    document.getElementById('kaart').innerText = kaart;
+  }
+</script>
 </body>
 </html>

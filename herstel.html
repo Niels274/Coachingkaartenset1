@@ -103,19 +103,25 @@
         auteur: "Maya Angelou"
       }
     ];
+// Array om de laatste drie getrokken indexen te onthouden
+  const laatsteIndices = [];
 
-    document.getElementById('trekKaartBtn').addEventListener('click', () => {
-      const index = Math.floor(Math.random() * kaarten.length);
-      const kaart = kaarten[index];
-      document.getElementById('kaart').innerHTML = `
-        <h3>${kaart.vraag}</h3>
-        <p>${kaart.tekst}</p>
-        <p class="reflectie"><em>${kaart.reflectie}</em></p>
-        <p class="quote">“${kaart.citaat}”</p>
-        <p class="author">– ${kaart.auteur}</p>
-      `;
-    });
-  </script>
+  function toonKaart() {
+    let index;
 
+    do {
+      index = Math.floor(Math.random() * kaarten.length);
+    } while (laatsteIndices.includes(index) && kaarten.length > laatsteIndices.length);
+
+    // Voeg de nieuwe index toe aan de lijst en houd deze maximaal 3 lang
+    laatsteIndices.push(index);
+    if (laatsteIndices.length > 3) {
+      laatsteIndices.shift(); // verwijder oudste index
+    }
+
+    const kaart = kaarten[index];
+    document.getElementById('kaart').innerText = kaart;
+  }
+</script>
 </body>
 </html>
