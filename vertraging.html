@@ -81,7 +81,7 @@
       auteur: "Irene Lyon"
     }
   ];
-// Array om de laatste drie getrokken indexen te onthouden
+
   const laatsteIndices = [];
 
   function toonKaart() {
@@ -91,15 +91,21 @@
       index = Math.floor(Math.random() * kaarten.length);
     } while (laatsteIndices.includes(index) && kaarten.length > laatsteIndices.length);
 
-    // Voeg de nieuwe index toe aan de lijst en houd deze maximaal 3 lang
     laatsteIndices.push(index);
     if (laatsteIndices.length > 3) {
-      laatsteIndices.shift(); // verwijder oudste index
+      laatsteIndices.shift();
     }
 
     const kaart = kaarten[index];
-    document.getElementById('kaart').innerText = kaart;
+    const kaartHTML = `
+      <p><strong>${kaart.vraag}</strong></p>
+      <p>${kaart.reflectie}</p>
+      <p class="citaat">"${kaart.citaat}"<br><span style="font-style: normal;">– ${kaart.auteur}</span></p>
+    `;
+    document.getElementById('kaart').innerHTML = kaartHTML;
   }
+
+  document.getElementById('trekKaartBtn').addEventListener('click', toonKaart);
 </script>
 </body>
 </html>
