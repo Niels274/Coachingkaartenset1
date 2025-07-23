@@ -84,28 +84,30 @@
 
   const laatsteIndices = [];
 
-  function toonKaart() {
-    let index;
+    function toonKaart() {
+      // Genereer lijst van toegestane indices
+      const beschikbareIndices = kaarten
+        .map((_, i) => i)
+        .filter(i => !laatsteIndices.includes(i));
 
-    do {
-      index = Math.floor(Math.random() * kaarten.length);
-    } while (laatsteIndices.includes(index) && kaarten.length > laatsteIndices.length);
+      // Als er geen andere keuze meer is, reset de uitsluiting
+      if (beschikbareIndices.length === 0) {
+        laatsteIndices.length = 0; // reset
+        beschikbareIndices.push(...kaarten.map((_, i) => i));
+      }
 
-    laatsteIndices.push(index);
-    if (laatsteIndices.length > 3) {
-      laatsteIndices.shift();
+      // Kies een index uit de beschikbare indices
+      const index = beschikbareIndices[Math.floor(Math.random() * beschikbareIndices.length)];
+
+      // Bewaar index
+      laatsteIndices.push(index);
+      if (laatsteIndices.length > 3) {
+        laatsteIndices.shift();
+      }
+
+      document.getElementById('kaart').innerText = kaarten[index];
     }
+  </script>
 
-    const kaart = kaarten[index];
-    const kaartHTML = `
-      <p><strong>${kaart.vraag}</strong></p>
-      <p>${kaart.reflectie}</p>
-      <p class="citaat">"${kaart.citaat}"<br><span style="font-style: normal;">– ${kaart.auteur}</span></p>
-    `;
-    document.getElementById('kaart').innerHTML = kaartHTML;
-  }
-
-  document.getElementById('trekKaartBtn').addEventListener('click', toonKaart);
-</script>
 </body>
 </html>
